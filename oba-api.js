@@ -3,6 +3,7 @@ const axios = require('axios')
 const convert = require('xml-to-json-promise')
 
 const queryToString = require('query-string').stringify
+const jp = require('jsonpath');
 
 const chalk = require('chalk');
 
@@ -12,7 +13,7 @@ class api {
     this.key = options.key
   }
 
-  get(endpoint, params = '') {
+  get(endpoint, params = '', keySearch = '') {
     // console.log(queryToString(params).replace (/^/,'&'))
     return new Promise((resolve, reject) => {
 
@@ -25,6 +26,11 @@ class api {
         // XML to Json
         return convert.xmlDataToJSON(response.data)
       })
+      // Search querey
+      .then (response => {
+        return keySearch ? jp.query(response, `$..${keySearch}`) : response
+      })
+      // Make object response
       .then(response => {
         return resolve({
           data: response,

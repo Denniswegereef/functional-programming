@@ -13,9 +13,10 @@ const obaApi = new api({
   key: process.env.PUBLIC
 })
 
+// Search for method, params and than optional where you wanna find something
 obaApi.get('search', {
-  q: 'dennis'
-}).then(response => {
+  q: 'harry potter'
+}, 'title').then(response => {
 
   app.get('/', (req, res) => res.json(response.data))
 
