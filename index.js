@@ -13,10 +13,11 @@ const obaApi = new api({
   key: process.env.PUBLIC
 })
 
-obaApi.get('holdings/root').then(response => {
+obaApi.get('search', {
+  q: 'dennis'
+}).then(response => {
 
   app.get('/', (req, res) => res.json(response.data))
 
   app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
-  console.log(chalk.yellow(response.url));
 })
