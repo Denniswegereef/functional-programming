@@ -1,21 +1,22 @@
 require('dotenv').config()
 
-const axios = require('axios');
-const convert = require('xml-to-json-promise');
+const api = require('./oba-api.js')
+const chalk = require('chalk');
 
-const baseURL = 'https://zoeken.oba.nl/api/v1/'
-const query = 'search/?q=dennis'
-const end = 'refine=true'
+const express = require('express')
 
+const app = express()
+const port = 3000
 
-axios.get(baseURL + query + '&authorization=' + process.env.PUBLIC, + '&' + end)
-  .then((response) => {
-    return convert.xmlDataToJSON(response.data)
-  })
-  .then((response) => {
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
+const obaApi = new api({
+  url: 'https://zoeken.oba.nl/api/v1/',
+  key: process.env.PUBLIC
+})
+
+obaApi.get('holdings/root').then(response => {
+
+  app.get('/', (req, res) => res.json(response.data))
+
+  app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
+  console.log(chalk.yellow(response.url));
+})
