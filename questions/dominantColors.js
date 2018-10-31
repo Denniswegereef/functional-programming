@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const api = require('./oba-api.js')
+const api = require('../oba-api.js')
 const chalk = require('chalk');
 const express = require('express')
 const app = express()
@@ -16,8 +16,14 @@ const obaApi = new api({
 // Search for method, params and than optional where you wanna find something
 obaApi.get('search', {
   'q': 'harry potter',
-  'librarian': 'true'
-}, 'title', true).then(response => {
+  'librarian': true
+}, 'coverimage', true).then(response => {
+
+  response.data.forEach(item => {
+    splashy.fromUrl(item).then(res => {
+      console.log(res)
+    })
+  })
 
   console.log(response.data)
 

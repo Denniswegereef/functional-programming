@@ -28,7 +28,7 @@ https://zoeken.oba.nl/api/v1/
 * Welke uitgever heeft de meeste boeken in de OBA liggen
 * Welke kleur is het meest gebruikt voor de cover van een boek
 * Welk woord wordt het meest gebruikt in de samenvatting van boeken
-*
+* Welke uitgever leent de meeste boeken uit
 
 
 ## Links

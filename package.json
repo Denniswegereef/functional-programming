@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/nodemon index.js",
+    "colors": "node_modules/.bin/nodemon questions/dominantColors.js",
     "json": "node_modules/.bin/json-server data.json"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "express": "^4.16.4",
     "jsonpath": "^1.0.0",
     "query-string": "^6.2.0",
+    "splashy": "^2.0.5",
     "xml-to-json-promise": "0.0.3"
   }
 }
