@@ -17,7 +17,7 @@ const obaApi = new api({
 obaApi.get('search', {
   'q': 'harry potter',
   'librarian': true
-}, 'coverimage', true).then(response => {
+}, ['title', 'coverimage'], true).then(response => {
 
   response.data.forEach(item => {
     splashy.fromUrl(item).then(res => {

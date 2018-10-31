@@ -15,13 +15,12 @@ const obaApi = new api({
 
 // Search for method, params and than optional where you wanna find something
 obaApi.get('search', {
-  'q': 'harry potter',
-  'librarian': 'true'
+  'q': 'harry potter'
 }, 'title', true).then(response => {
+  
+  console.log(response)
 
-  console.log(response.data)
-
-  app.get('/', (req, res) => res.json(newArr))
+  app.get('/', (req, res) => res.json(response.data))
   app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
 })
 .catch(err => {
