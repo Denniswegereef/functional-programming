@@ -1,23 +1,29 @@
 require('dotenv').config()
 
 const api = require('./oba-api.js')
+const helpers = require('./helpers.js')
+
 const chalk = require('chalk');
 const express = require('express')
 const app = express()
 const port = 3000
-
 const splashy = require('splashy')()
+
+
+var colors = {
+  red: '#f00',
+  yellow: '#ff0',
+  blue: '#00f'
+}
+
+const nearestColor = require('nearest-color').from(colors);
 
 const obaApi = new api({
   url: 'https://zoeken.oba.nl/api/v1/',
   key: process.env.PUBLIC
 })
 
-var nearestColors = {
-  red: '#f00',
-  yellow: '#ff0',
-  blue: '#00f'
-}
+
 
 // Search for method, params and than optional where you wanna find something
 obaApi.get('search', {
@@ -40,21 +46,22 @@ obaApi.get('search', {
   })
 })
 .then(response => {
-  const bookObject = response
-
-  bookObject.forEach((book, index) => {
-
-    splashy.fromUrl(book.coverImage)
-    .then(dominantColors => {
-
-      bookObject[index].dominantColors = dominantColors
-    })
-  })
-  return bookObject
+  return Promise.all(response.map(book =>
+    // Find the color palette
+    splashy.fromUrl(book.coverImage).then(
+      dominantColors => {
+        // Create new key and add it to the list
+        book.dominantColors = dominantColors
+        return book
+      })
+  ))
 })
 .then(response => {
-  // response.forEach(item)
-  return response
+  return Promise.all(response.map(book => {
+      book.nearestColor = nearestColor(book.dominantColors[0])
+      return book
+    }
+  ))
 })
 .then(response => {
   app.get('/', (req, res) => res.json(response))
@@ -65,3 +72,19 @@ obaApi.get('search', {
   console.error(chalk.red(err));
   return reject(err)
 })
+
+
+//
+// .then(response => {
+//   const bookObject = response
+//
+//   bookObject.forEach((book, index) => {
+//
+//     splashy.fromUrl(book.coverImage)
+//     .then(dominantColors => {
+//
+//       bookObject[index].dominantColors = dominantColors
+//     })
+//   })
+//   return bookObject
+// })
