@@ -13,6 +13,12 @@ const obaApi = new api({
   key: process.env.PUBLIC
 })
 
+var nearestColors = {
+  red: '#f00',
+  yellow: '#ff0',
+  blue: '#00f'
+}
+
 // Search for method, params and than optional where you wanna find something
 obaApi.get('search', {
   'q': 'genre:erotiek',
@@ -34,11 +40,20 @@ obaApi.get('search', {
   })
 })
 .then(response => {
-  response.map(item => {
-    splashy.fromUrl(item.coverImage).then(res => {
-      console.log(res)
+  const bookObject = response
+
+  bookObject.forEach((book, index) => {
+
+    splashy.fromUrl(book.coverImage)
+    .then(dominantColors => {
+
+      bookObject[index].dominantColors = dominantColors
     })
   })
+  return bookObject
+})
+.then(response => {
+  // response.forEach(item)
   return response
 })
 .then(response => {
