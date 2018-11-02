@@ -1,12 +1,30 @@
 # Functional-programming
-
+---------
 ## Description
 
 ## Table of content
 
+* [Installing](#installing)
+* Research questions
+* Main question
+   * Sub-questions
+   * Important variables
+   * Code
+   * Libaries used
+   * Findings
+* Still to do
+* Credits
+* Proces
+
+---------
+
 ## Installing
 
+---------
+
 ## Research questions
+
+---------
 
 ## Main question
 
@@ -20,9 +38,15 @@
 
 ### Libaries used
 
+---------
+
 ## Still to do
 
+---------
+
 ## Credits
+
+---------
 
 ## Proces
 
