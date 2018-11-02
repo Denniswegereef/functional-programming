@@ -1,3 +1,72 @@
+# Functional-programming
+
+## Description
+
+## Table of content
+
+## Installing
+
+## Research questions
+
+## Main question
+
+### Sub questions
+
+### Important variables
+
+### Code
+
+### Findings
+
+### Libaries used
+
+## Still to do
+
+## Credits
+
+## Proces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Functional programming
 
 endpoint: search | details | refine | schema | availability | holdings

@@ -24,8 +24,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
+    "color-thief": "^2.2.3",
+    "dominant-color": "0.0.1",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "get-image-colors": "^1.8.1",
     "jsonpath": "^1.0.0",
     "nearest-color": "^0.4.2",
     "query-string": "^6.2.0",
