@@ -1,34 +1,64 @@
 # Functional-programming
+
 ---------
+
 ## Description
 
 ## Table of content
 
 * [Installing](#installing)
-* Research questions
-* Main question
-   * Sub-questions
-   * Important variables
-   * Code
-   * Libaries used
-   * Findings
-* Still to do
-* Credits
-* Proces
-
----------
+* [Research questions](#research-questons)
+* [Hypothesis](#hypothesis)
+   * [Sub-questions](#sub-questions)
+   * [Important variables](important-variables)
+   * [Code](#code)
+   * [Libaries used](#libaries-used)
+   * [Findings](#findings)
+* [Still to do](#still-to-do)
+* [Credits](#credits)
+* [Proces](#proces)
 
 ## Installing
 
----------
+To install this project you need to do a few things to get up and running. Don't forget it needs the public API key from the [Openbare Bibliotheek Amsterdam](https://www.oba.nl/)
+
+```bash
+# Clone the repository
+git clone https://github.com/BasPieren/functional-programming.git
+
+# Change directory
+cd functional-programming
+
+# Create a .env file
+touch .env
+
+# Add public and secret key to the .env file
+echo "PUBLIC=987654321
+SECRET=123456789" >> .env
+
+# Install dependencies
+npm installing
+
+# Start application
+npm run start
+
+```
+
+The browser hosts all the data on `http://localhost:3000`
+Currently no client local for the visualisation
 
 ## Research questions
 
----------
+## Hypothesis
 
-## Main question
+**Are red or pink the most dominant colors used on dutch erotic book covers in 2017?**
 
-### Sub questions
+#### Sub questions
+
+* What are the most dominant colors from books of another language?
+* Do dominant colors very when you look at other years?
+* What are the most dominant colors of differentes genres?
+* 
 
 ### Important variables
 
@@ -38,15 +68,12 @@
 
 ### Libaries used
 
----------
 
 ## Still to do
 
----------
 
 ## Credits
 
----------
 
 ## Proces
 
