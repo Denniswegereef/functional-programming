@@ -81,6 +81,5 @@ obaApi.get('search', {
 })
 .catch(err => {
   //console.log(chalk.red(combineUrl));
-  console.error(chalk.red(err));
-  return reject(err)
+  console.error(chalk.red(err))
 })
