@@ -1,18 +1,13 @@
 require('dotenv').config()
 
-
-
 const api = require('./oba-api.js')
-const helpers = require('./helpers.js')
 
 const chalk = require('chalk');
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8080
 const splashy = require('splashy')()
-var color = require('dominant-color')
-
-
+const cors = require('cors')
 
 var colors = {
   white:	'#FFFFFF',
@@ -43,9 +38,10 @@ const obaApi = new api({
 // Search for method, params and than optional where you wanna find something
 obaApi.get('search', {
   'q': 'genre:erotiek',
-  'facet': 'type(book)&facet=language(dut)'
+  'facet': 'type(book)&facet=language(dut)',
   //'publicationDate': 2018
-  //'facet': 'pubYear(2014)'
+  'facet': 'pubYear(2013)',
+  'refine': true
   // 'facet': 'format(book)',
   //'sort': 'year'
 })
@@ -79,6 +75,7 @@ obaApi.get('search', {
   ))
 })
 .then(response => {
+  app.use(cors())
   app.get('/', (req, res) => res.json(response))
   app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
 })
@@ -87,18 +84,3 @@ obaApi.get('search', {
   console.error(chalk.red(err));
   return reject(err)
 })
-
-//
-// .then(response => {
-//   const bookObject = response
-//
-//   bookObject.forEach((book, index) => {
-//
-//     splashy.fromUrl(book.coverImage)
-//     .then(dominantColors => {
-//
-//       bookObject[index].dominantColors = dominantColors
-//     })
-//   })
-//   return bookObject
-// })

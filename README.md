@@ -51,14 +51,17 @@ Currently no client local for the visualisation
 
 ## Hypothesis
 
-**Are red or pink the most dominant colors used on dutch erotic book covers in 2017?**
+**Are red or pink the most dominant colors used on dutch erotic book covers in 2017?** -> Geen hypothese lol
+
+The reason I did choose erotic as a genre is mostly because people (included me) associate it with red and pink most of the time. So I
+The reason why I wanted a erotic genre is mainly because everybody kinda relates to the fact that red and pink
 
 #### Sub questions
 
 * What are the most dominant colors from books of another language?
 * Do dominant colors very when you look at other years?
 * What are the most dominant colors of differentes genres?
-* 
+*
 
 ### Important variables
 
@@ -126,14 +129,6 @@ https://zoeken.oba.nl/api/v1/
 
 ## Weekdays
 #### Week 1
-* **Mondag**
-  * We started with a presentation abou the assigment, and had some fast coding with Titus what was quite helpfull. The API from the OBA looks promising, but I still need to wrap my head around it. And after that **karaoke**!
-* **Tuesday**
-  * With Folkert-Jan and Daniel 2 we created together some sort of more elegant way to use the API. With a seperate module where you can just throw search queries in and it does the magic for you. But most of the time we just checking out the API and look at all the possiblities that you can do. And started writing this readme
-* **Wednesday**
-  * Well, we started the day with a lectures what was quite intereseting. But this was by far the worst day I did some stuff but I still don't know what I did. It feels I didn't move a inch in the right direction. I have to make my questions a little bit more specefic and see what I really need for it. I'm currently leaning towards something like the dominant color of cover images to do something with that.
-* **Thursday**
-* **Friday**
 
 #### Week 2
 * **Mondag**
@@ -160,8 +155,6 @@ De 3 meest dominante kleuren van het spectrum -> een tint roze gaat naar roze, t
 https://www.npmjs.com/package/nearest-color
 
 Data nodig 10 verschillende jaren
-
-
 
 Nodig: 10 jaar aan horror boeken wanneer ze gepublicieerd zijn:
 Pubyear
