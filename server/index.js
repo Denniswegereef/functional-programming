@@ -40,7 +40,6 @@ obaApi.get('search', {
   'q': 'genre:erotiek',
   'facet': 'type(book)&facet=language(dut)',
   //'publicationDate': 2018
-  'facet': 'pubYear(2013)',
   'refine': true
   // 'facet': 'format(book)',
   //'sort': 'year'
