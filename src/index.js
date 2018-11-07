@@ -1,4 +1,5 @@
-
+// GROUPBY
+// 2008
 
 var svg = d3.select("#buildings")
     .append("svg")

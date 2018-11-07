@@ -28,10 +28,14 @@ const obaApi = new api({
 let years = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
 
 obaApi.getMore('', '',
-  [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018])
+  [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+  // [2008, 2009]
+)
   .then(response => {
-  app.get('/', (req, res) => res.json(response))
-  app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
+    //console.log(JSON.stringify(response))
+    //console.log(response)
+    app.get('/', (req, res) => res.json(response))
+    app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
 })
 
 //

@@ -64,49 +64,79 @@ module.exports = class api {
   }
 
   getUrls(years) {
-      return new Promise((resolve, reject) => {
-        let promises = []
-        years.forEach(function(currentValue){
-          let yearUrl = `https://zoeken.oba.nl/api/v1/search/?authorization=1e19898c87464e239192c8bfe422f280&q=genre:erotiek&facet=pubYear(${currentValue})&refine=true`
-          promises.push(axios.get(yearUrl))
-        })
-        resolve(promises)
-    })
+    const base = 'https://zoeken.oba.nl/api/v1/search/'
+    const publicKey = '1e19898c87464e239192c8bfe422f280'
+
+    return Promise.all(years.map(requestYear))
+
+    function requestYear(year) {
+      const all = []
+      let page = 1
+
+      return send()
+
+      function send() {
+        return axios
+          .get(`${base}?authorization=${publicKey}&q=book&facet=pubYear(${year})&refine=true&page=${page}`)
+          .then(res => res.data)
+          .then(convert.xmlDataToJSON)
+          .then(next, console.error)
+          .then(res => {
+            if (res) {
+              console.log(year, res.length)
+              return res
+            }
+          })
+      }
+
+      function next(aantalBoeken) {
+        all.push(aantalBoeken)
+        let amountOfPages = Math.ceil(aantalBoeken.aquabrowser.meta[0].count[0] / 20)
+        //console.log(Math.ceil(aantalBoeken.aquabrowser.meta[0].count[0] / 20))
+
+        if (page < amountOfPages) {
+          page++
+          //console.log(year, page)
+          return send()
+        } else {
+          //console.log(year, all.length);
+          //console.log(all);
+          return all
+          //console.log('alles klaar')
+          //console.log(aantalBoeken.length)
+          //return aantalBoeken.length
+        }
+      }
+    }
   }
 
   getMore(endpoint = '', params = '', years) {
     return new Promise((resolve, reject) => {
 
       this.getUrls(years)
-      .then(response => axios.all(response)
-      .then(axios
-        .spread((...response) => {
-        return response
-      })))
       .then(response => {
-        const parsejson =  response.map(currentValue => {
-          parseString(currentValue.data, (err, result) => {
-            return result
-          })
-        })
-        return parsejson
+        console.log(response);
+        resolve(response)
+        // console.log(response)
+        // return response.map(allYear => {
+        //   let data = convert.xmlDataToJSON(response[0].data)
+        //   return data
+        // })
       })
       .then(response => {
-        console.log(response)
-        return response.map(item => {
-          console.log(item)
-          return item.data.aquabrowser.results[0].result
-        })
-      })
-      .then(response => {
-        console.log(response.length)
-      })
-      .then(response => parseString(response, (err, result) => {
-        return result
-      }))
-      .then(response => {
+        //console.log(response)
         resolve(response)
       })
+      // .then(response => {
+      //   // console.log(response)
+      //   // console.log(response.length);
+      // })
+      // .then(response => parseString(response, (err, result) => {
+      //   return result
+      // }))
+      // .then(response => {
+      //   resolve(response)
+      // })
       .catch(err => {
         console.log(err)
       })
