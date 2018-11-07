@@ -13,27 +13,13 @@ const obaApi = new api({
   key: process.env.PUBLIC
 })
 
-// years.forEach(function(currentValue){
-//   console.log(currentValue)
-//   yearUrl = `https://zoeken.oba.nl/api/v1/search/?authorization=1e19898c87464e239192c8bfe422f280&q=genre:erotiek&facet=pubYear(${currentValue})&refine=true`
-//   promises.push(axios.get(yearUrl))
-// })
-//
-// axios.all(promises).then(result => {
-//     result.forEach(function(response) {
-//         console.log(response)
-//     })
-// });
-
-let years = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
-
 obaApi.getMore('', '',
   [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
   // [2008, 2009]
 )
   .then(response => {
     //console.log(JSON.stringify(response))
-    //console.log(response)
+    console.log(response)
     app.get('/', (req, res) => res.json(response))
     app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
 })

@@ -77,34 +77,26 @@ module.exports = class api {
 
       function send() {
         return axios
-          .get(`${base}?authorization=${publicKey}&q=book&facet=pubYear(${year})&refine=true&page=${page}`)
+          .get(`${base}?authorization=${publicKey}&q=genre:erotiek&facet=pubYear(${year})&refine=true&page=${page}&pagesize=1`)
           .then(res => res.data)
           .then(convert.xmlDataToJSON)
           .then(next, console.error)
           .then(res => {
             if (res) {
-              console.log(year, res.length)
               return res
             }
-          })
+        })
       }
 
       function next(aantalBoeken) {
         all.push(aantalBoeken)
         let amountOfPages = Math.ceil(aantalBoeken.aquabrowser.meta[0].count[0] / 20)
-        //console.log(Math.ceil(aantalBoeken.aquabrowser.meta[0].count[0] / 20))
 
         if (page < amountOfPages) {
           page++
-          //console.log(year, page)
           return send()
         } else {
-          //console.log(year, all.length);
-          //console.log(all);
           return all
-          //console.log('alles klaar')
-          //console.log(aantalBoeken.length)
-          //return aantalBoeken.length
         }
       }
     }
@@ -116,27 +108,10 @@ module.exports = class api {
       this.getUrls(years)
       .then(response => {
         console.log(response);
-        resolve(response)
-        // console.log(response)
-        // return response.map(allYear => {
-        //   let data = convert.xmlDataToJSON(response[0].data)
-        //   return data
-        // })
-      })
-      .then(response => {
-        //console.log(response)
+
+        
         resolve(response)
       })
-      // .then(response => {
-      //   // console.log(response)
-      //   // console.log(response.length);
-      // })
-      // .then(response => parseString(response, (err, result) => {
-      //   return result
-      // }))
-      // .then(response => {
-      //   resolve(response)
-      // })
       .catch(err => {
         console.log(err)
       })
