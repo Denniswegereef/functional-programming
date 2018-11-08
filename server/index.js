@@ -58,12 +58,14 @@ obaApi.get('search', {
 .then(response => {
   return Promise.all(response.map(book =>
     // Find the color palette
-    splashy.fromUrl(book.coverImage).then(
-      dominantColors => {
-        // Create new key and add it to the list
-        book.dominantColors = dominantColors
-        return book
-      })
+    setTimeout(function() {
+      splashy.fromUrl(book.coverImage).then(
+        dominantColors => {
+          // Create new key and add it to the list
+          book.dominantColors = dominantColors
+          return book
+        })
+    }, 300)
   ))
 })
 .then(response => {
@@ -74,9 +76,14 @@ obaApi.get('search', {
   ))
 })
 .then(response => {
-  app.use(cors())
-  app.get('/', (req, res) => res.json(response))
-  app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
+  //app.use(cors())
+  fs.writeFile("json.json", reponse, 'utf-8', (err) => {
+    if (err) {console.error(err) return}
+    console.log("File has been created");
+});
+
+  // app.get('/', (req, res) => res.json(response))
+  // app.listen(port, () => console.log(chalk.green(`Listening on port ${port}`)))
 })
 .catch(err => {
   //console.log(chalk.red(combineUrl));

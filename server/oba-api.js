@@ -2,7 +2,6 @@
 const axios = require('axios')
 const convert = require('xml-to-json-promise')
 const jp = require('jsonpath')
-const helpers = require('./helpers.js')
 const chalk = require('chalk')
 var parseString = require('xml2js').parseString
 
@@ -77,7 +76,7 @@ module.exports = class api {
 
       function send() {
         return axios
-          .get(`${base}?authorization=${publicKey}&q=genre:erotiek&facet=pubYear(${year})&refine=true&page=${page}&pagesize=1`)
+          .get(`${base}?authorization=${publicKey}&q=genre:erotiek&facet=pubYear(${year})&refine=true&page=${page}&pagesize=20`)
           .then(res => res.data)
           .then(convert.xmlDataToJSON)
           .then(next, console.error)
@@ -91,7 +90,6 @@ module.exports = class api {
       function next(aantalBoeken) {
         all.push(aantalBoeken)
         let amountOfPages = Math.ceil(aantalBoeken.aquabrowser.meta[0].count[0] / 20)
-
         if (page < amountOfPages) {
           page++
           return send()
@@ -102,14 +100,11 @@ module.exports = class api {
     }
   }
 
-  getMore(endpoint = '', params = '', years) {
+  getMore(years) {
     return new Promise((resolve, reject) => {
 
       this.getUrls(years)
       .then(response => {
-        console.log(response);
-
-        
         resolve(response)
       })
       .catch(err => {
