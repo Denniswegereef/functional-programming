@@ -1,11 +1,13 @@
 d3.json('data.json').then(data => {
   document.querySelector('#amountofbooks').textContent = data.length + ' books'
 
+  // Get unique years
   const booksByYear = d3
     .nest()
     .key(book => book.publication)
     .entries(data)
 
+  // Sort books by year
   const yearsSortedColor = booksByYear.map(year => ({
     year: Number(year.key),
     data: d3
@@ -16,6 +18,7 @@ d3.json('data.json').then(data => {
       .sort((a, b) => b.value - a.value)
   }))
 
+  // Create the right format
   const nicerColorPoints = d3
     .nest()
     .key(book => book.nearestColor.name)
@@ -40,11 +43,9 @@ d3.json('data.json').then(data => {
       left: 50
     },
     width = window.innerWidth - margin.left - margin.right,
-    height = 500
-
-  const domain = 10
-
-  const minMax = d3.extent(booksByYear.map(year => year.key))
+    height = 500,
+    domain = 10,
+    minMax = d3.extent(booksByYear.map(year => year.key))
 
   const xScale = d3
     .scaleLinear()
@@ -56,13 +57,14 @@ d3.json('data.json').then(data => {
     .domain([domain, 1])
     .range([height, 0])
 
-  var line = d3
+  const line = d3
     .line()
     .x(color => xScale(color.year))
     .y(color => yScale(color.value))
   //  .curve(d3.curveBasis)
 
-  var svg = d3
+  // Canvas
+  const svg = d3
     .select('#visualisation')
     .append('svg')
     .attr('width', width + margin.left + margin.right)
@@ -70,6 +72,7 @@ d3.json('data.json').then(data => {
     .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
+  // x-axis
   svg
     .append('g')
     .attr('class', 'x-axis')

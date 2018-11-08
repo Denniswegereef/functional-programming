@@ -5,47 +5,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>d3</title>
+  <title>D3 visualisation</title>
 
-  <style> /* set the CSS */
-body {
-  background-color: #1b1a1a;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #232323;
+  <style>
+    /* set the CSS */
+    body {
+      background-color: #1b1a1a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background-color: #232323;
 
-}
-.line {
-  fill: none;
-  stroke-linecap: round;
-  stroke-width: 3px;
-  opacity: .7;
-   transition: stroke-width .1s ease;
-}
-h1 {
-  color: #fff;
-  margin-left: 50px;
-  font-size: 20px;
-}
+    }
 
-.pink {
-    color: #FF1493;
-}
+    .line {
+      fill: none;
+      stroke-linecap: round;
+      stroke-width: 3px;
+      opacity: .7;
+      transition: stroke-width .1s ease;
+    }
 
-.grid-x-axis line{
-  stroke: grey;
-}
-</style>
+    h1 {
+      color: #fff;
+      margin-left: 50px;
+      font-size: 20px;
+    }
+
+    .pink {
+      color: #FF1493;
+    }
+
+    .grid-x-axis line {
+      stroke: grey;
+    }
+    p {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      color: #fff;
+    }
+  </style>
 
 </head>
 
 <body>
   <h1>The dominant color of <span class="pink">dutch erotic books</span> from the OBA for the last 10 years of <span class="pink" id="amountofbooks"> books</span></h1>
   <div id="visualisation"></div>
+
+  <p>Dennis Wegereef</p>
 </body>
 
 <script src="https://d3js.org/d3.v5.js"></script>
-<!-- <script src="index.js"></script> -->
-<!-- <script src="booksd3.js"></script> -->
 <script src="index.js"></script>
 
 </html>
