@@ -1,5 +1,5 @@
 d3.json('data.json').then(data => {
-  document.querySelector('#amountofbooks').textContent = data.length
+  document.querySelector('#amountofbooks').textContent = data.length + ' books'
 
   const booksByYear = d3
     .nest()
