@@ -248,4 +248,8 @@ I think I did a great job trying to make it functional. Ofcourse there are some 
 
 ## Credits/links
 
+[Tim Ruiterkamp](https://github.com/timruiterkamp)
+[Folkert-Jan van der Pol](https://github.com/FJvdPol)
+[Titus Wormer](https://github.com/wooorm)
+
 [Oba API](https://zoeken.oba.nl/api/v1/)
