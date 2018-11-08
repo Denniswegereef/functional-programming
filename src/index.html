@@ -9,24 +9,33 @@
 
   <style> /* set the CSS */
 body {
+  background-color: #1b1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: #232323;
+
 }
 .line {
   fill: none;
-  /* stroke: steelblue; */
+  stroke-linecap: round;
   stroke-width: 3px;
+  opacity: .7;
+   transition: stroke-width .1s ease;
 }
 h1 {
-  color: #fff;
+  color: #FF1493;
   margin-left: 50px;
   font-size: 20px;
+}
+
+.grid-x-axis line{
+  stroke: grey;
 }
 </style>
 
 </head>
 
 <body>
-  <h1>The dominant color of dutch erotic books from the OBA for the last 10 years</h1>
+  <h1>The dominant color of dutch erotic books from the OBA for the last 10 years of <span id="amountofbooks"></span> books</h1>
   <div id="visualisation"></div>
 </body>
 

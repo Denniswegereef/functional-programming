@@ -1,4 +1,6 @@
 d3.json('data.json').then(data => {
+  document.querySelector('#amountofbooks').textContent = data.length
+
   const booksByYear = d3
     .nest()
     .key(book => book.publication)
@@ -23,9 +25,7 @@ d3.json('data.json').then(data => {
       label: key,
       color: value,
       values: yearsSortedColor.map(({ year, data }) => {
-        console.log(data)
         let pos = data.map(z => z.key).indexOf(key)
-        console.log(pos)
         return {
           year,
           value: pos == '-1 ' ? 10 : pos + 1
@@ -40,7 +40,9 @@ d3.json('data.json').then(data => {
       left: 50
     },
     width = window.innerWidth - margin.left - margin.right,
-    height = 400
+    height = 500
+
+  const domain = 10
 
   const minMax = d3.extent(booksByYear.map(year => year.key))
 
@@ -51,13 +53,14 @@ d3.json('data.json').then(data => {
 
   const yScale = d3
     .scaleLinear()
-    .domain([10, 1])
+    .domain([domain, 1])
     .range([height, 0])
 
   var line = d3
     .line()
     .x(color => xScale(color.year))
     .y(color => yScale(color.value))
+  //  .curve(d3.curveBasis)
 
   var svg = d3
     .select('#visualisation')
@@ -69,10 +72,38 @@ d3.json('data.json').then(data => {
 
   svg
     .append('g')
-    .attr('class', 'x axis')
+    .attr('class', 'x-axis')
     .style('color', '#fff')
     .attr('transform', 'translate(0,' + height + ')')
     .call(d3.axisBottom(xScale).tickFormat(d3.format('d')))
+
+  svg
+    .append('g')
+    .attr('class', 'grid-x-axis')
+    .call(
+      d3
+        .axisLeft(yScale)
+        .ticks(domain)
+        .tickSize(-width)
+        .tickFormat('')
+    )
+
+  svg
+    .append('text')
+    .attr('x', 10)
+    .attr('transform', 'rotate(90)')
+    .text('Meest gekozen naar minst gekozen kleuren')
+    .attr('fill', '#FF1493')
+    .attr('y', '40')
+    .attr('x', '0')
+
+  svg
+    .append('text')
+    .attr('x', 10)
+    .text('Jaartallen')
+    .attr('fill', '#FF1493')
+    .attr('y', height + 40)
+    .attr('x', '0')
 
   svg
     .append('g')
@@ -80,29 +111,42 @@ d3.json('data.json').then(data => {
     .attr('class', 'y axis')
     .call(d3.axisLeft(yScale))
 
-  console.log(nicerColorPoints)
+  const tooltip = svg
+    .append('g')
+    .style('position', 'absolute')
+    .style('z-index', '10')
+    .style('visibility', 'hidden')
+    .text('a simple tooltip')
+
   nicerColorPoints.forEach((color, index) => {
     const path = svg
       .append('path')
+      .attr('class', 'lines')
       .datum(color.values)
       .style('stroke', color.color)
       .attr('class', 'line')
       .attr('d', line)
+      .on('mouseover', function() {
+        d3.selectAll('svg')
+          .selectAll('.line')
+          .style('stroke-width', '.5px')
+        d3.select(this).style('stroke-width', '7px')
+      })
+      .on('mouseout', function() {
+        d3.selectAll('svg')
+          .selectAll('.line')
+          .style('stroke-width', '2px')
+      })
 
     svg
       .selectAll('dot')
       .data(color.values)
       .enter()
       .append('circle')
-      .style('fill', '#fff') // <== and this one
+      .style('fill', '#fff')
       .attr('r', 1)
-      .attr('cx', function(d) {
-        console.log(d.year)
-        return xScale(d.year)
-      })
-      .attr('cy', function(d) {
-        return yScale(d.value)
-      })
+      .attr('cx', d => xScale(d.year))
+      .attr('cy', d => yScale(d.value))
 
     const totalLength = path.node().getTotalLength()
 
