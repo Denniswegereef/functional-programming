@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write \"src/**/*.js\"",
     "start": "node_modules/.bin/nodemon server/index.js",
     "getMore": "node_modules/.bin/nodemon server/getMultiple.js",
     "json": "node_modules/.bin/json-server data.json"
@@ -19,7 +20,8 @@
   },
   "homepage": "https://github.com/Denniswegereef/functional-programming#readme",
   "devDependencies": {
-    "nodemon": "^1.18.5"
+    "nodemon": "^1.18.5",
+    "prettier": "^1.15.1"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -34,5 +36,9 @@
     "splashy": "^2.0.5",
     "xml-to-json-promise": "0.0.3",
     "xml2js": "^0.4.19"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }
