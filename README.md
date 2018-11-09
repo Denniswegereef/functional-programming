@@ -243,7 +243,7 @@ But the fun part is, this code is modular so we can just throw in another set of
 
 We only need 3 parts to make this work on your local machine, as you can see we have in the `src` folder a `index.html`, `index.js` and a `data.json`. They all depend on eachother but I had to put the JSON as a file in there because I host it on github pages. But we could easily change to a localhost or the host from a online web api.
 
-The D3 code does a various of things. I tried to use the D3 build in features for the first time for filtering and ordering. I was blown away by the fact how easy it is to get the right data. The code does a couple of things:
+The D3 code does a various of things. I tried to use the D3 build in features for the first time for filtering and ordering. For the base of my graph I used [this graph](https://bl.ocks.org/d3noob/402dd382a51a4f6eea487f9a35566de0) as inspiration for my graph. I was blown away by the fact how easy it is to get the right data. The code does a couple of things:
 
 - Get all the unique years
 - Order the colors by year
