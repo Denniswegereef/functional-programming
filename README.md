@@ -6,6 +6,8 @@
 
 A visualisation of the erotic books of the OBA. It shows a certain range of dominant colors used on the cover. [The visualisation can be found here](https://denniswegereef.github.io/functional-programming/src/).
 
+![finalimage](finalimage.png)
+
 ## Table of content
 
 - [Installing](#installing)
