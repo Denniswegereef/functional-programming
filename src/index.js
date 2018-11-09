@@ -138,7 +138,7 @@ d3.json('data.json').then(data => {
       .on('mouseout', function() {
         d3.selectAll('svg')
           .selectAll('.line')
-          .style('stroke-width', '2px')
+          .style('stroke-width', '4px')
       })
 
     svg

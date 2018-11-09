@@ -227,11 +227,34 @@ As I was slowly working towards this in D3 Titus came with a genius idea to do s
 
 ![Firstsketch](githublanguages.png)
 
+### Result
+
+Well the live result can be seen here [The visualisation can be found here](https://denniswegereef.github.io/functional-programming/src/). It has a nice intro animation, and a little hover interaction to single one color. I still have to find a nice way to deal with all the chaos. It seems a little bit overwhelming when you first look at it. But you can get some great insighs about the covers.
+
+### Insights
+
+Well my hypothesis was that pink and red are the most dominant colors of the covers. When you look at the visualisation you can actually see that maroon (kinda red), purple and white are by far the most used colors. Also it's fun to see that black is getting used alot more from 2011. And the actually pink was only 3 years on the covers.
+
+But the fun part is, this code is modular so we can just throw in another set of books of a different genre (or all 450k :)) and D3 just handles it.
+
 ### Code
 
-In the `src/booksd3.js` I put my first iteration, where I tried my first graph with all the colorful dots. But that's a deprecated idea. But it's still living there in case I have to get some code for my current visualisation in the `src/index.js`. And there is `src/geparkeerd.js` where the code is of a tutorial I watched, I'm not ready to delete anything yet.... :)
+We only need 3 parts to make this work on your local machine, as you can see we have in the `src` folder a `index.html`, `index.js` and a `data.json`. They all depend on eachother but I had to put the JSON as a file in there because I host it on github pages. But we could easily change to a localhost or the host from a online web api.
 
-I can't really go in details with the code right now because It's still work in progress and not ready for the final result yet.
+The D3 code does a various of things. I tried to use the D3 build in features for the first time for filtering and ordering. I was blown away by the fact how easy it is to get the right data. The code does a couple of things:
+
+- Get all the unique years
+- Order the colors by year
+- Create a new array with all the colors and their position each year (this is what is needed to make the line graph)
+- Create some fancy scales to make it fit
+- Draw for every color a line on the years
+- Did some animation, and hovers just to see how it works
+
+When I first started I was blown away by the syntax, I had no clue where to even start. When I looked online at different examples I had no clue. I just copied one and tried carefully change it around with my data. After some hours of tweaking I got slowly the grasp of it. I already did some D3 tutorials for bar charts what really learned me how scales works what is a big need for it.
+
+I tried to keep my code functional as possible, I know it can be write a little bit shorter but I try to keep a nice balance between readability and compact code. Titus helped me with a big part to find the the last part of forging my data into the way my lines can easily use it. :D
+
+But I saw the light when I started helping people and explaining how D3 works, that made me really think to explain it. Helped me alot to know everyting that is going on.
 
 ## Still to do
 
@@ -247,6 +270,10 @@ I can't really go in details with the code right now because It's still work in 
 In terms of the the first week where we didn't use D3 I learned so many things. I knew already some things of javascript but this really opened my eyes. I never used promises, actually understanding alot of functions to manipulate arrays and objects and learned working with alot more data. It was a week of fun and some frustation ofcourse if thing's didn't go well. But the wierd part is since I did so many iterations of making it more towards how I want it I'm just lefover with a great working piece of code. But I threw so many things away or don't use it right now. That really amazes me how long you can work and redo such a small piece of logic. But I'm soooo happy that I had it working _exacly_ how I imaged to have it to work.
 
 I think I did a great job trying to make it functional. Ofcourse there are some parts that still need some love but the idea is there. And I'm not near done yet.
+
+But the visualisation is in my opinion really nice! It shows the data really when and the result is way better than I expected. It still needs some love to make a little bit more cleared but that's mostly due the fact that I first need to make a design and than building my way towards it, not the other way around.
+
+All with all I had alot of fun, frustation and satisfaction this 2 weeks.
 
 ## Credits/links
 
