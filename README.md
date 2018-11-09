@@ -50,7 +50,7 @@ npm run getMore
 
 The browser hosts all the data on `http://localhost:8080`
 
-#### When we wanna see the visualisation in our browser
+#### When we wanna see the visualisation in our browser just open the index.html in your browser
 
 ## Research questions
 
